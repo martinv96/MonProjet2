@@ -43,11 +43,14 @@ HTML;
         return new Response("Salut $nom", Response::HTTP_OK);
     }
 
+    
     #[Route("/calcul/{a}/{b}", name: "addition", methods: ["GET"])]
-
+    // ajout d'une boucle if pour renvoyer une réponse dans le cas ou l'utilisateur ne tape pas un chiffre.
     function addition($a,$b) {
+        if (!is_numeric($a | $b)) {
+            return new Response("pas possible, taper un nombre");
+        }
         $resultat = $a + $b;
         return new Response("<h1>page /addition </h1> <br>résultat de $a et $b :  $resultat");
     }
-
 }
