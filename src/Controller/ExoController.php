@@ -2,22 +2,26 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ExoController
+class ExoController extends AbstractController
 {
     #[Route("/aleatoire", name: "aleatoire", methods: ["GET"])]
 
-    function exo() {
-        $nombre = random_int(0, 1000); 
+    function exo()
+    {
+        $nombre = random_int(0, 1000);
         return new Response("<h1>Route /aleatoire</h1> <br> un nombre aleatoire : $nombre");
     }
 
     #[Route("/today", name: "dateDuJour", methods: ["GET"])]
 
-    function dateDuJour() {
+    function dateDuJour()
+    {
         $date = (new \DateTime())->format('d/m/Y H:i:s');
 
         $html = <<<HTML
@@ -49,7 +53,8 @@ HTML;
 
     #[Route("/calcul/{a}/{b}", name: "addition", methods: ["GET"])]
     // ajout d'une boucle if pour renvoyer une réponse dans le cas ou l'utilisateur ne tape pas un chiffre.
-    function addition($a,$b) {
+    function addition($a, $b)
+    {
         if (!is_numeric($a | $b)) {
             return new Response("pas possible, taper un nombre");
         }
@@ -57,16 +62,16 @@ HTML;
         return new Response("<h1>page /addition </h1> <br>résultat de $a et $b :  $resultat");
     }
 
-    #[Route("/inscription", name: "inscription", methods:["POST"])]
+    #[Route("/inscription", name: "inscription", methods: ["POST"])]
 
-    function insription(Request $requete){
+    function insription(Request $requete)
+    {
         // var_dump($requete->request);
         return new Response(
             $requete->request->get('email'),
             Response::HTTP_OK
         );
     }
-
 
     // Créer une Route /connexion avec la méthode POST
     // Injecter l'objet requête dans l'action.
@@ -80,9 +85,10 @@ HTML;
     // le nom et le prenom ne doivent pas etre vides
     // le mot de passe doit etre supérieur à 6 caractères
 
-    #[Route("/connexion", name: "connexion", methods:["POST"])]
+    #[Route("/connexion", name: "connexion", methods: ["POST"])]
 
-    function connexion(Request $request) {
+    function connexion(Request $request)
+    {
         $nom = $request->request->get('nom');
         $prenom = $request->request->get('prenom');
         $email = $request->request->get('email');
@@ -108,4 +114,16 @@ HTML;
         return new Response("Connexion réussie pour $prenom $nom", Response::HTTP_OK);
     }
 
+    #[Route("/profile", name: "profile", methods: ["GET"])]
+
+    function profile(Request $req)
+    {
+        // dans un cas concret on récupere les données de l'utilisateur depuis le DB (avec du json)
+        $id = $req->request->get("id");
+        return $this->json([
+            "email" => "martin@vallee",
+            "prenom" => "martin",
+            "identifiant" =>$id
+        ]);
+    }
 }
