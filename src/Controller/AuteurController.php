@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Entity\Auteur;
@@ -24,8 +25,8 @@ class AuteurController extends AbstractController
 
         $nouveauAuteur = new Auteur();
         $nouveauAuteur->setNom($nom)
-                      ->setPrenom($prenom)
-                      ->setDate(new DateTimeImmutable($date));
+            ->setPrenom($prenom)
+            ->setDate(new DateTimeImmutable($date));
 
         $auteurSauvegarde = $repository->sauvegarder($nouveauAuteur, true);
 
@@ -79,7 +80,7 @@ class AuteurController extends AbstractController
         ]);
     }
 
-    #[Route("/auteurs/{id}", name: "auteur.update", methods: ["PUT"])]
+    #[Route("/auteurs/{id}", name: "auteur.update", methods: ["POST"])]
     public function updateAuteur(Request $req, Auteur $auteur, AuteurRepository $repository): JsonResponse
     {
         $nom = $req->request->get("nom");
