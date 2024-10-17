@@ -12,9 +12,16 @@ class AuteurRepository extends ServiceEntityRepository
         parent::__construct($doctrine, Auteur::class);
     }
 
+    /**
+     * @param Auteur $auteur
+     * @param bool $isSave
+     * 
+     * @return Auteur
+     */
     public function sauvegarder(Auteur $auteur, bool $isSave = true): Auteur
     {
         $entityManager = $this->getEntityManager();
+        // persist permet d'enregistrer les données en BDD
         $entityManager->persist($auteur);
 
         if ($isSave) {

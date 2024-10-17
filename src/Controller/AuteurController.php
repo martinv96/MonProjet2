@@ -15,14 +15,17 @@ class AuteurController extends AbstractController
     #[Route("/auteurs", name: "auteur.create", methods: ["POST"])]
     public function creerAuteur(Request $req, AuteurRepository $repository): JsonResponse
     {
+        // Récuprérer les données depuis la requete
         $nom = $req->request->get("nom");
         $prenom = $req->request->get("prenom");
         $date = $req->request->get("date");
 
+        // Valider le nom, prénom et date
         if (empty($nom) || empty($prenom) || empty($date)) {
             return $this->json(["erreur" => "Tous les champs sont obligatoires !"], 400);
         }
 
+        // Créer l'auteur
         $nouveauAuteur = new Auteur();
         $nouveauAuteur->setNom($nom)
             ->setPrenom($prenom)
