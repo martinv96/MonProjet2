@@ -24,13 +24,13 @@
                     {% for task in list.tasks %}
                         <li>
                             <strong>id: {{task.id}}, titre: {{ task.title }}</strong>
-                            <strong>date: {{ task.createdAt|date('d/m/Y H:i') }}</strong>
+                            <strong>date: {{ task.createdAt|date('d/m/Y H:i', 'Europe/Paris') }}</strong>
                             {% if task.isFinished %}
                                 <span>(Terminé)</span>
                             {% else %}
                                 <span>(En cours)</span>
                             {% endif %}
-                            
+
                             <form method="post" action="{{ path('taches.delete', {id: task.id}) }}" style="display:inline;">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <button type="submit" class="btn btn-tache">Supprimer la tache</button>
