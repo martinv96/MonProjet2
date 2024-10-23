@@ -1,0 +1,59 @@
+div.createList {
+    border: 1px solid red;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+    padding: 10px;
+    text-align: center;
+    background-color: white;
+
+}
+
+div.createList input {
+    margin-top: 10px;
+    background-color: rgb(243, 242, 242);
+    border-radius: 3px;
+}
+
+div.createList button {
+    background-color: rgb(8, 175, 8);
+    border: 3px solid rgb(8, 175, 8);
+    margin-top: 10px;
+}
+
+.container {
+    display: flex;
+}
+
+.list {
+    border: 1px solid red;
+    border-radius: 10px;
+    padding: 10px;
+    max-width:fit-content;
+    margin: 30px;
+    text-align: center;
+    background-color: white;
+}
+
+.list button {
+    background-color: rgb(8, 175, 8);
+    border:1px solid rgb(8, 175, 8);
+    border-radius: 5px;
+    position:relative;
+    margin: 10px;
+}
+
+.list a {
+    text-decoration: none;
+    border: 1px solid rgb(236, 229, 229);
+    border-radius: 3px;
+    padding: 2px;
+    background-color: rgb(236, 229, 229);
+}
+
+button.btn-liste {
+    background-color: red;
+    border: 2px solid red;
+    border-radius: 5px;
+}

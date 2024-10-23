@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {# <link rel="stylesheet" href="/style/globals.css"> #}
+	<link rel="stylesheet" href="{{ asset('style/globals.css') }}">
+	<link rel="stylesheet" href="{{ asset('style/todolist.css') }}">
+	<link rel="stylesheet" href="{{ asset('style/taches.css') }}">
+    {% block titrePage %} 
+    <title>Document</title>
+    {% endblock %}
+    
+</head>
+<body>
+    <header>
+			
+
+
+		</header>
+			
+
+            {% block contenuPage %} {% endblock %}
+		
+
+		<footer>
+			<nav class='nav-footer'>
+				<a href="/">Accueil</a>
+				<a href={{path('home')}}>Home</a>
+				<a href="/profil">Profil</a>
+				<a href={{path('contact')}}>Contact</a>
+				<a href="/todos-list">Todolist</a>
+			</nav>
+		</footer>
+</body>
+</html>

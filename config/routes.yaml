@@ -3,3 +3,12 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+todos_list_new:
+    path: /todos/list/new
+    controller: App\Controller\TodosListController::new
+    methods: GET
+
+index:
+    path: /
+    controller: App\Controller\IndexController::index

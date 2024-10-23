@@ -1,0 +1,37 @@
+{% extends 'layout.html.twig' %}
+
+{% block titrePage %} 
+<title>page d'accueil</title>
+{% endblock %}
+
+{% block contenuPage %}
+{% include 'nav.html.twig' %}
+      <h1>
+      Bienvenue sur la page d'accueil {{prenom|capitalize ~ " " ~ nom|capitalize}} !
+      
+      </h1>
+      <p>
+        <h3>Lorem</h3>
+        
+        <p>Nombres de notes {{notes|length}}</p> 
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Nesciunt saepe blanditiis, excepturi id at amet reiciendis ad!
+        Voluptate dolor omnis nam, provident veritatis, iure inventore vel repellendus expedita tempore asperiores?
+      </p>
+      <p>
+      {# avec boucle sur symfony #}
+                            {% if notes|length > 0 %}
+                                vous avez {{notes|length}} notes
+                            {% else %}
+                                vous n'avez pas de notes
+                            {% endif %}
+                        
+                        </p>
+
+                        <p>
+                        {# {% notes|length > 0 ? "vous avez des notes" : "vous n'avez pas de notes" %} #}
+
+                        {# boucle for pour les notes #}
+                        {% include 'notes.html.twig' %}
+                        </p>
+{% endblock %}

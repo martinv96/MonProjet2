@@ -1,0 +1,9 @@
+{% for cle, valeur in notes %}
+	<div>
+		<span>
+			{{cle}}
+			:
+			{{valeur}}</span>
+		<span>{{valeur >= 10 ? "validé" : "non validé"}}</span>
+	</div>
+{% endfor %}

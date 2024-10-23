@@ -1,0 +1,43 @@
+.ajoutTache {
+    background-color: white;
+    border: 1px solid red;
+    border-radius: 5px;
+    max-width: 200px;
+    padding:10px;
+    text-align: center;
+}
+
+.taskTitle {
+    margin-top: 5px;
+    margin-bottom: 6px;
+}
+
+.ajoutTache button {
+    background-color: green;
+    border: 1px solid green;
+    border-radius: 3px;
+}
+
+.listeTache {
+    border: 1px solid red;
+    border-radius: 5px;
+    background-color: white;
+    max-width: 410px;
+    padding: 3px 2px 20px 20px;
+}
+
+.listeTache li {
+    padding-bottom: 7px;
+}
+
+.btn-return{
+    text-decoration: none;
+    border: 1px solid black;
+    padding: 4px;
+    border-radius: 3px;
+    background-color: white;
+}
+
+.none {
+    padding-top: 5px;
+}

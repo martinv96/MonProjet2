@@ -1,0 +1,28 @@
+body {
+    background-color: rgb(216, 209, 209);
+}
+
+h1 {
+    font-size: 5em;
+    color: rgb(119, 14, 6);
+    text-align: center;
+    border: solid 1px rgb(255, 255, 255);
+    border-radius: 10px;
+    background-color: thistle;
+}
+
+footer {
+    display:flex;
+    position:absolute;
+    bottom:10px;
+    left: 90%;
+    border: solid 1px rgb(255, 255, 255);
+    border-radius: 10px;
+    background-color:bisque;
+    margin: 10px;
+    color: black;
+    text-align: center;
+}
+
+
+

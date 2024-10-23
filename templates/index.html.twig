@@ -1,0 +1,55 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Mes Listes de Tâches{% endblock %}
+
+{% block contenuPage %}
+    <h1>Mes Listes de Tâches</h1>
+
+<div class="createList">
+    <form action="{{ path('todos_list.create') }}" method="post">
+        <label for="title">Titre de la liste:</label>
+        <input type="text" name="title" id="title" required placeholder="entrer le titre de la liste">
+        <button type="submit">Créer</button>
+    </form>
+</div>
+
+    <ul class="container">
+        {% for list in lists %}
+            <div  class="list">
+                <h3>{{ list.title }}</h3>
+                <!-- Lien vers la page de détails de la liste -->
+                <a href="{{ path('todos_list.show', {id: list.id}) }}">Voir les détails</a>
+
+                <!-- Formulaire de suppression de la liste -->
+
+                <!-- Affichage des tâches de la liste -->
+                <ul>
+                    {% for task in list.tasks %}
+                        <li>
+                            <strong>id: {{task.id}}, titre: {{ task.title }}</strong>
+                            <strong>date: {{ task.createdAt|date('d/m/Y H:i') }}</strong>
+                            {% if task.isFinished %}
+                                <span>(Terminé)</span>
+                            {% else %}
+                                <span>(En cours)</span>
+                            {% endif %}
+                            <!-- Formulaire pour supprimer une tâche -->
+                            <form method="post" action="{{ path('taches.delete', {id: task.id}) }}" style="display:inline;">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-tache">Supprimer la tache</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li>Aucune tâche dans cette liste.</li>
+                    {% endfor %}
+                </ul>
+                <form method="post" action="{{ path('todos_list.delete', {id: list.id}) }}" style="display:inline;">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-liste">Supprimer la liste</button>
+                </form>
+            </div>
+        {% else %}
+            <li>Aucune liste de tâches trouvée.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
