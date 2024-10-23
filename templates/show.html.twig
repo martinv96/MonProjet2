@@ -22,7 +22,7 @@
             <li>
             <strong>id :{{task.id}} </strong>
                 <strong>{{ task.title }}</strong>
-                - créée le {{ task.createdAt|date('d/m/Y H:i') }} <!-- Afficher la date de création -->
+                - créée le {{ task.createdAt|date('d/m/Y H:i') }}
                 {% if task.isFinished %}
                     <span>(Terminé)</span>
                 {% else %}

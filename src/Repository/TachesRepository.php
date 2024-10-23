@@ -39,7 +39,6 @@ class TachesRepository extends ServiceEntityRepository
         }
     }
 
-    // Méthode personnalisée pour récupérer les tâches terminées
     public function findFinishedTasks(): array
     {
         return $this->createQueryBuilder('t')
@@ -50,7 +49,6 @@ class TachesRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    // Méthode personnalisée pour récupérer les tâches par liste
     public function findByTodosList($todosListId): array
     {
         return $this->createQueryBuilder('t')

@@ -29,8 +29,7 @@ class Taches
 
     public function __construct()
     {
-        // Initialisation de la date de création lors de la création de l'objet
-        $this->createdAt = new \DateTime();  // Définit la date actuelle
+        $this->createdAt = new \DateTime();
     }
 
     public function getId(): ?int

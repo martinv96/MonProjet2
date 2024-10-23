@@ -18,7 +18,6 @@ class TodosList
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    // Relation inverse avec l'entité Taches
     #[ORM\OneToMany(mappedBy: 'todosList', targetEntity: Taches::class, cascade: ['persist', 'remove'])]
     private Collection $tasks;
 
@@ -65,7 +64,6 @@ class TodosList
     public function removeTask(Taches $task): self
     {
         if ($this->tasks->removeElement($task)) {
-            // set the owning side to null (unless already changed)
             if ($task->getTodosList() === $this) {
                 $task->setTodosList(null);
             }

@@ -17,12 +17,9 @@
         {% for list in lists %}
             <div  class="list">
                 <h3>{{ list.title }}</h3>
-                <!-- Lien vers la page de détails de la liste -->
+                
                 <a href="{{ path('todos_list.show', {id: list.id}) }}">Voir les détails</a>
 
-                <!-- Formulaire de suppression de la liste -->
-
-                <!-- Affichage des tâches de la liste -->
                 <ul>
                     {% for task in list.tasks %}
                         <li>
@@ -33,7 +30,7 @@
                             {% else %}
                                 <span>(En cours)</span>
                             {% endif %}
-                            <!-- Formulaire pour supprimer une tâche -->
+                            
                             <form method="post" action="{{ path('taches.delete', {id: task.id}) }}" style="display:inline;">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <button type="submit" class="btn btn-tache">Supprimer la tache</button>

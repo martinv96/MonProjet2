@@ -16,7 +16,7 @@ class TachesController extends AbstractController
     public function creerTache(Request $request, TodosList $todosList, TachesRepository $repository): Response
 {
     $titre = $request->request->get('title');
-    $isFinished = $request->request->get('isFinished') !== null; // Checkbox checked or not
+    $isFinished = $request->request->get('isFinished') !== null;
 
     if (empty($titre)) {
         return $this->json(['erreur' => 'Le titre est obligatoire'], 400);
@@ -26,21 +26,19 @@ class TachesController extends AbstractController
     $nouvelleTache->setTitle($titre)
                   ->setIsFinished($isFinished)
                   ->setTodosList($todosList)
-                  ->setCreatedAt(new \DateTime()); // Ajout de la date de création
+                  ->setCreatedAt(new \DateTime());
 
     $repository->save($nouvelleTache, true);
 
-    // Rediriger vers la page de la liste de tâches après avoir ajouté une tâche
-    return $this->redirectToRoute('todos_list.show', ['id' => $todosList->getId()]); // Modifiez le nom ici
+    return $this->redirectToRoute('todos_list.show', ['id' => $todosList->getId()]);
 }
 
 #[Route('/taches/{id}', name: 'taches.delete', methods: ['POST', 'DELETE'])]
 public function deleteTache(Taches $taches, TachesRepository $repository): Response
 {
     $todosList = $taches->getTodosList();
-    $repository->remove($taches, true); // Suppression de la tâche
+    $repository->remove($taches, true); 
 
-    // Rediriger vers la page de la liste après la suppression de la tâche
     return $this->redirectToRoute('todos_list.index', ['id' => $todosList->getId()]);
 }
 

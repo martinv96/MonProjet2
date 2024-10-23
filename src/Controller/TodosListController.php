@@ -54,17 +54,16 @@ class TodosListController extends AbstractController
 
         if ($title) {
             $todosList->setTitle($title);
-            $repository->save($todosList, true); // Remplacez "sauvegarder" par "save".
+            $repository->save($todosList, true);
         }
 
-        // Rediriger vers la page d'affichage de la liste après la mise à jour
         return $this->redirectToRoute('todos_list.show', ['id' => $todosList->getId()]);
     }
 
     #[Route('/todos-list/{id}/delete', name: 'todos_list.delete', methods: ['POST'])]
     public function deleteTodosList(TodosList $todosList, TodosListRepository $repository): Response
     {
-        $repository->remove($todosList, true); // Flusher la suppression.
+        $repository->remove($todosList, true); 
         return $this->redirectToRoute('todos_list.index');
     }
 }

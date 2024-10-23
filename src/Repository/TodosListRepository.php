@@ -39,7 +39,6 @@ class TodosListRepository extends ServiceEntityRepository
         }
     }
 
-    // Méthode personnalisée pour récupérer les listes de tâches par title
     public function findByName(string $title): array
     {
         return $this->createQueryBuilder('t')
