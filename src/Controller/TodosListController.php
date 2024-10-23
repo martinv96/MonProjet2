@@ -32,6 +32,10 @@ class TodosListController extends AbstractController
     #[Route('/todos-list', name: 'todos_list.index', methods: ['GET'])]
     public function getAllTodosLists(TodosListRepository $todosListRepository): Response
     {
+
+        // Entity: toutes les listes de la DB
+        // Repository: permet de les envoyer à la vue
+
         $lists = $todosListRepository->findAll();
 
         return $this->render('index.html.twig', [

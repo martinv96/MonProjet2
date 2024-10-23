@@ -26,6 +26,7 @@ class TodosList
         $this->tasks = new ArrayCollection();
     }
 
+    // accesseurs / mutateurs : getter et setter
     public function getId(): ?int
     {
         return $this->id;

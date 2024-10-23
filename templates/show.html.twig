@@ -20,9 +20,9 @@
     <h3>liste des taches</h3>
         {% for task in todosList.tasks %}
             <li>
-            <strong>id :{{task.id}} </strong>
-                <strong>{{ task.title }}</strong>
-                - créée le {{ task.createdAt|date('d/m/Y H:i') }}
+            <p>id : <strong>{{task.id}}</strong>
+                {{ task.title }}
+                - créée le {{ task.createdAt|date('d/m/Y H:i') }}</p>
                 {% if task.isFinished %}
                     <span>(Terminé)</span>
                 {% else %}

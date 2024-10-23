@@ -48,8 +48,6 @@ class LivreController extends AbstractController
         return $this->json($livresTableau);
     }
 
-    // livre?id=1
-    // livre/1
     #[Route("/livre/{id}", name: "livres.id", methods: ["GET"])]
 
     function recupererLivre(LivreRepository $repo, $id)
