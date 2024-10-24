@@ -30,7 +30,7 @@ class TodosListRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(TodosList $entity, bool $flush = false): void
+    public function supprimer(TodosList $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 

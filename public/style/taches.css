@@ -26,6 +26,10 @@
     padding: 3px 2px 20px 20px;
 }
 
+.listeTache button {
+    background-color: red;
+}
+
 .listeTache li {
     padding-bottom: 7px;
 }

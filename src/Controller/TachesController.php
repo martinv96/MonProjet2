@@ -33,13 +33,36 @@ class TachesController extends AbstractController
     return $this->redirectToRoute('todos_list.show', ['id' => $todosList->getId()]);
 }
 
-#[Route('/taches/{id}', name: 'taches.delete', methods: ['POST', 'DELETE'])]
+#[Route('/taches/{id}/delete', name: 'taches.delete', methods: ['POST','DELETE'])]
 public function deleteTache(Taches $taches, TachesRepository $repository): Response
 {
     $todosList = $taches->getTodosList();
-    $repository->remove($taches, true); 
+    $repository->supprimer($taches, true); 
 
-    return $this->redirectToRoute('todos_list.index', ['id' => $todosList->getId()]);
+    return $this->redirectToRoute('todos_list.show', ['id' => $todosList->getId()]);
 }
+
+#[Route('/taches/{id}/update', name: 'taches.update', methods: ['POST'])]
+public function updateTache($id, TachesRepository $repository, Request $req): Response
+{
+    // Récupérer la tâche
+    $tache = $repository->find($id);
+    if (!$tache) {
+        throw $this->createNotFoundException("Tâche non trouvée");
+    }
+
+    // Vérifier si la case à cocher 'isFinished' est cochée
+    $isFinished = $req->request->get('isFinished') !== null;
+
+    // Mettre à jour le statut de la tâche
+    $tache->setIsFinished($isFinished);
+
+    // Sauvegarder les modifications
+    $repository->save($tache, true);
+
+    // Rediriger ou retourner une réponse appropriée
+    return $this->redirectToRoute('todos_list.show', ['id' => $tache->getTodosList()->getId()]);
+}
+
 
 }

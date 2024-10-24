@@ -1,46 +1,28 @@
-div.createList {
-    border: 1px solid red;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    max-width: 200px;
-    padding: 10px;
-    text-align: center;
-    background-color: white;
-
-}
-
-div.createList input {
-    margin-top: 10px;
-    background-color: rgb(243, 242, 242);
-    border-radius: 3px;
-}
-
-div.createList button {
-    background-color: rgb(8, 175, 8);
-    border: 3px solid rgb(8, 175, 8);
-    margin-top: 10px;
-}
-
+/* Conteneur qui permet aux éléments de passer à la ligne après 3 éléments */
 .container {
     display: flex;
+    flex-wrap: wrap; /* Permet de passer à la ligne après un certain nombre d'éléments */
+    gap: 20px; /* Espace entre les éléments */
+    /* justify-content: space-between; Ajuste l'espacement entre les éléments */
 }
 
+/* Style des listes dans le conteneur */
 .list {
     border: 1px solid red;
     border-radius: 10px;
     padding: 10px;
-    max-width:fit-content;
-    margin: 30px;
+    /* width: calc(33.33% - 20px); Chaque élément occupe environ 1/3 de la largeur du conteneur */
+    margin-bottom: 30px; /* Espace en bas de chaque élément */
     text-align: center;
     background-color: white;
+    box-sizing: border-box; /* Inclut le padding dans la largeur totale */
 }
 
 .list button {
     background-color: rgb(8, 175, 8);
-    border:1px solid rgb(8, 175, 8);
+    border: 1px solid rgb(8, 175, 8);
     border-radius: 5px;
-    position:relative;
+    position: relative;
     margin: 10px;
 }
 
@@ -56,4 +38,29 @@ button.btn-liste {
     background-color: red;
     border: 2px solid red;
     border-radius: 5px;
+}
+
+
+.delete-list {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    fill: red;
+    cursor: pointer;
+}
+
+.delete-list:hover{
+    scale:1.2;
+    transition: all 0.2s ease-in-out;
+}
+
+.list-card {
+    position: relative;
+}
+
+.invisible-button{
+    background-color: transparent;
+    border: none;
 }

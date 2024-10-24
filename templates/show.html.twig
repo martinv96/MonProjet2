@@ -1,43 +1,55 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Liste de Tâches : {{ todosList.title }}{% endblock %}
+{% block title %}Liste de Tâches :
+	{{ todosList.title }}
+{% endblock %}
 
 {% block contenuPage %}
-    <h1>{{ todosList.title }}</h1>
+	<h1>{{ todosList.title }}</h1>
 
-    <div class="ajoutTache">
-    <form action="{{ path('taches.create', {id: todosList.id}) }}" method="post">
-        <input type="hidden" name="taches_id" value="{{ todosList.id }}">
-        <label for="title">Titre de la tâche:</label>
-        <input class="taskTitle" type="text" name="title" id="title" required placeholder="entrer le titre de la tâche">
-        <label for="isFinished">Tâche terminée ?</label>
-        <input type="checkbox" name="isFinished" id="isFinished">
-        <button type="submit">Ajouter</button>
-    </form>
+	<div class="ajoutTache">
+		<form action="{{ path('taches.create', {id: todosList.id}) }}" method="post">
+			<input type="hidden" name="taches_id" value="{{ todosList.id }}">
+			<label for="title">Titre de la tâche:</label>
+			<input class="taskTitle" type="text" name="title" id="title" required placeholder="entrer le titre de la tâche">
+			<label for="isFinished">Tâche terminée ?</label>
+			<input type="checkbox" name="isFinished" id="isFinished">
+			<button type="submit">Ajouter</button>
+		</form>
 
-</div>
-    <ul class="listeTache">
-    <h3>liste des taches</h3>
-        {% for task in todosList.tasks %}
-            <li>
-            <p>id : <strong>{{task.id}}, id_table :{{todosList.id}}</strong>
-                {{ task.title }}
-                - créée le {{ task.createdAt|date('d/m/Y H:i') }} </p>
-                {% if task.isFinished %}
-                    <span>(Terminé)</span>
-                {% else %}
-                    <span>(En cours)</span>
-                {% endif %}
-                <form method="post" action="{{ path('taches.delete', {id: task.id}) }}" style="display:inline;">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit" class="btn btn-danger">Supprimer</button>
-                </form>
-            </li>
-        {% else %}
-            <li class="none">Aucune tâche pour cette liste.</li>
-        {% endfor %}
-    </ul>
+	</div>
+	<ul class="listeTache">
+		<h3>liste des taches</h3>
+		{% for task in todosList.tasks %}
+			<li>
+				<p>id :
+					<strong>{{task.id}}, id_table :{{todosList.id}}</strong>
+					{{ task.title }}
+					- créée le
+					{{ task.createdAt|date('d/m/Y H:i', 'Europe/Paris') }}
+				</p>
+				{% if task.isFinished %}
+					<span>(Terminé)</span>
+				{% else %}
+					<span>(En cours)</span>
+				{% endif %}
+				<form method="post" action="{{ path('taches.delete', {id: task.id}) }}" style="display:inline;">
+					<input type="hidden" name="_method" value="DELETE">
+					<button type="submit" class="btn btn-danger">Supprimer</button>
+				</form>
 
-    <a href="{{ path('todos_list.index') }}" class="btn-return">Retour aux listes</a>
-    
+				<form method="post" action="{{ path('taches.update', {id: task.id}) }}">
+					<label for="isFinishedUpdate_{{ task.id }}">Modifié ?</label>
+					<input type="checkbox" name="isFinished" id="isFinishedUpdate_{{ task.id }}" {% if task.isFinished %} checked {% endif %}>
+					<button type="submit">Mettre à jour</button>
+				</form>
+
+			</li>
+		{% else %}
+			<li class="none">Aucune tâche pour cette liste.</li>
+		{% endfor %}
+	</ul>
+
+	<a href="{{ path('todos_list.index') }}" class="btn-return">Retour aux listes</a>
+
 {% endblock %}

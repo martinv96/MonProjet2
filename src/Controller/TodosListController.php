@@ -67,7 +67,7 @@ class TodosListController extends AbstractController
     #[Route('/todos-list/{id}/delete', name: 'todos_list.delete', methods: ['POST'])]
     public function deleteTodosList(TodosList $todosList, TodosListRepository $repository): Response
     {
-        $repository->remove($todosList, true); 
+        $repository->supprimer($todosList, true); 
         return $this->redirectToRoute('todos_list.index');
     }
 }

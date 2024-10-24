@@ -17,7 +17,12 @@
         {% for list in lists %}
             <div  class="list">
                 <h3>{{ list.title }}</h3>
-                
+                {# <button class="invisible-button">
+                <svg class="delete-list" width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="37" y="122.07" width="120.308" height="500.03" rx="15" transform="rotate(-45 37 122.07)" fill="#D9D9D9"/>
+<rect x="390.578" y="37" width="120.308" height="500.03" rx="15" transform="rotate(45 390.578 37)" fill="#D9D9D9"/>
+</svg>
+</button> #}
                 <a href="{{ path('todos_list.show', {id: list.id}) }}">Voir les détails</a>
 
                 <ul>
@@ -26,9 +31,9 @@
                             <strong>id: {{task.id}}, titre: {{ task.title }}</strong>
                             <strong>date: {{ task.createdAt|date('d/m/Y H:i', 'Europe/Paris') }}</strong>
                             {% if task.isFinished %}
-                                <span>(Terminé)</span>
+                                <span style="color: red;">(Terminé)</span>
                             {% else %}
-                                <span>(En cours)</span>
+                                <span style="color: green;">(En cours)</span>
                             {% endif %}
 
                             <form method="post" action="{{ path('taches.delete', {id: task.id}) }}" style="display:inline;">
@@ -50,3 +55,7 @@
         {% endfor %}
     </ul>
 {% endblock %}
+
+{# Exercice:
+1. Afficher les tache non términée en rouge, et le tache terminée en vert.
+2. Ajouter un bouton pour terminée/ou remettre une tache. #}

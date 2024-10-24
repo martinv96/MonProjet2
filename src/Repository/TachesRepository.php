@@ -30,7 +30,7 @@ class TachesRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Taches $entity, bool $flush = false): void
+    public function supprimer(Taches $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
