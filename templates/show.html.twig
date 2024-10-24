@@ -35,13 +35,13 @@
 				{% endif %}
 				<form method="post" action="{{ path('taches.delete', {id: task.id}) }}" style="display:inline;">
 					<input type="hidden" name="_method" value="DELETE">
-					<button type="submit" class="btn btn-danger">Supprimer</button>
+					<button type="submit" style="background-color:red; border:1px solid white;border-radius:5px;">Supprimer</button>
 				</form>
 
 				<form method="post" action="{{ path('taches.update', {id: task.id}) }}">
 					<label for="isFinishedUpdate_{{ task.id }}">Modifié ?</label>
 					<input type="checkbox" name="isFinished" id="isFinishedUpdate_{{ task.id }}" {% if task.isFinished %} checked {% endif %}>
-					<button type="submit">Mettre à jour</button>
+					<button type="submit" style="background-color:green; margin-top:10px;border:1px solid white; border-radius:5px;">Mettre à jour</button>
 				</form>
 
 			</li>

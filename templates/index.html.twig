@@ -1,59 +1,67 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Mes Listes de Tâches{% endblock %}
+{% block title %}Mes Listes de Tâches
+{% endblock %}
 
 {% block contenuPage %}
-    <h1>Mes Listes de Tâches</h1>
+	<h1>Mes Listes de Tâches</h1>
 
-<div class="createList">
-    <form action="{{ path('todos_list.create') }}" method="post">
-        <label for="title">Titre de la liste:</label>
-        <input type="text" name="title" id="title" required placeholder="entrer le titre de la liste">
-        <button type="submit">Créer</button>
-    </form>
-</div>
+	<div class="createList">
+		<form action="{{ path('todos_list.create') }}" method="post">
+			<label for="title">Titre de la liste:</label>
+			<input type="text" name="title" id="title" required placeholder="entrer le titre de la liste">
+			<button type="submit">Créer</button>
+		</form>
+	</div>
 
-    <ul class="container">
-        {% for list in lists %}
-            <div  class="list">
-                <h3>{{ list.title }}</h3>
-                {# <button class="invisible-button">
-                <svg class="delete-list" width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="37" y="122.07" width="120.308" height="500.03" rx="15" transform="rotate(-45 37 122.07)" fill="#D9D9D9"/>
-<rect x="390.578" y="37" width="120.308" height="500.03" rx="15" transform="rotate(45 390.578 37)" fill="#D9D9D9"/>
-</svg>
-</button> #}
-                <a href="{{ path('todos_list.show', {id: list.id}) }}">Voir les détails</a>
+	<ul class="container">
+		{% for list in lists %}
+			<div class="list">
+				<h3>{{ list.title }}</h3>
+				{# <button class="invisible-button">
+				                <svg class="delete-list" width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<rect x="37" y="122.07" width="120.308" height="500.03" rx="15" transform="rotate(-45 37 122.07)" fill="#D9D9D9"/>
+				<rect x="390.578" y="37" width="120.308" height="500.03" rx="15" transform="rotate(45 390.578 37)" fill="#D9D9D9"/>
+				</svg>
+				</button> #}
+				<a href="{{ path('todos_list.show', {id: list.id}) }}">Voir les détails</a>
 
-                <ul>
-                    {% for task in list.tasks %}
-                        <li>
-                            <strong>id: {{task.id}}, titre: {{ task.title }}</strong>
-                            <strong>date: {{ task.createdAt|date('d/m/Y H:i', 'Europe/Paris') }}</strong>
-                            {% if task.isFinished %}
-                                <span style="color: red;">(Terminé)</span>
-                            {% else %}
-                                <span style="color: green;">(En cours)</span>
-                            {% endif %}
+				<ul>
+					{% for task in list.tasks %}
+						<li>
+							<strong>id:
+								{{task.id}}, titre:
+								{{ task.title }}</strong>
+							<strong>date:
+								{{ task.createdAt|date('d/m/Y H:i', 'Europe/Paris') }}</strong>
+							{% if task.isFinished %}
+								<span style="color: red;">(Terminé)</span>
+							{% else %}
+								<span style="color: green;">(En cours)</span>
+							{% endif %}
 
-                            <form method="post" action="{{ path('taches.delete', {id: task.id}) }}" style="display:inline;">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" class="btn btn-tache">Supprimer la tache</button>
-                            </form>
-                        </li>
-                    {% else %}
-                        <li>Aucune tâche dans cette liste.</li>
-                    {% endfor %}
-                </ul>
-                <form method="post" action="{{ path('todos_list.delete', {id: list.id}) }}" style="display:inline;">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit" class="btn btn-liste">Supprimer la liste</button>
-                </form>
-            </div>
-        {% else %}
-            <li>Aucune liste de tâches trouvée.</li>
-        {% endfor %}
-    </ul>
+							<form method="post" action="{{ path('taches.delete', {id: task.id}) }}" style="display:inline;">
+								<input type="hidden" name="_method" value="DELETE">
+                                {% if task.isFinished %}
+								<button type="submit" style="background-color:red;">Supprimer la tache</button>
+                                {% else  %}
+                                <button type="submit" style="background-color:green;">Supprimer la tache</button>
+                                {% endif %}
+							</form>
+						</li>
+					{% else %}
+						<li>Aucune tâche dans cette liste.</li>
+					{% endfor %}
+				</ul>
+				<form method="post" action="{{ path('todos_list.delete', {id: list.id}) }}" style="display:inline;">
+					<input type="hidden" name="_method" value="DELETE">
+					<button type="submit" class="btn btn-liste">Supprimer la liste</button>
+				</form>
+			</div>
+		{% else %}
+			<li>Aucune liste de tâches trouvée.</li>
+		{% endfor %}
+	</ul>
 {% endblock %}
 
 {# Exercice:
