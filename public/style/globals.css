@@ -1,14 +1,16 @@
 body {
-    background-color: rgb(216, 209, 209);
+    background-color: rgb(161, 143, 143);
 }
 
 h1 {
-    font-size: 5em;
-    color: rgb(119, 14, 6);
+    font-size: 3em;
+    color: rgb(0, 0, 0);
+    position:relative;
+    left:25%;
     text-align: center;
-    border: solid 1px rgb(255, 255, 255);
+    max-width:800px;
     border-radius: 10px;
-    background-color: thistle;
+    background-color: #ffffff;
 }
 
 footer {

@@ -1,6 +1,23 @@
-<nav class='nav-header'>
-				<a href="/">Accueil</a>
-				<a href="/home">Home</a>
-				<a href="/profil">Profil</a>
-				<a href={{path('contact')}}>Contact</a>
-			</nav>
+<link rel="stylesheet" href="{{ asset('style/globals.css') }}">
+
+<nav class="nav-header">
+    <a href="/">Accueil</a>
+    <a href="/home">Home</a>
+    <a href="/profil">Profil</a>
+    <a href="{{ path('contact') }}">Contact</a>
+
+    {% if app.user %}
+        <a href="{{ path('profil') }}" class="{{ app.request.pathInfo == '/profil' ? 'active' : '' }}">Mon profil</a>
+
+		{% if is_granted('ROLE_ADMIN') %}
+			<a href={{path('admin')}}>
+			Admin
+			</a>
+		{% endif %}
+
+        <a href="{{ path('logout') }}" class="{{ app.request.pathInfo == '/logout' ? 'active' : '' }}">Se déconnecter</a>
+    {% else %}
+        <a href="{{ path('inscription') }}" class="{{ app.request.pathInfo == '/inscription' ? 'active' : '' }}">S'inscrire</a>
+        <a href="{{ path('connexion') }}" class="{{ app.request.pathInfo == '/connexion' ? 'active' : '' }}">Se connecter</a>
+    {% endif %}
+</nav>

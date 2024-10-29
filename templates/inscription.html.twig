@@ -1,0 +1,29 @@
+{% extends 'layout.html.twig' %}
+
+{% block contenuPage %}
+<link rel="stylesheet" href="{{ asset('style/form.css') }}">
+{% include 'nav.html.twig' %}
+
+<h1>Page d'inscription</h1>
+
+{{ form_start(formulaire) }}
+
+    <div class="label">
+    {{ form_label(formulaire.email) }}
+    </div>
+    <div class="input">
+    {{ form_widget(formulaire.email) }}
+    </div>
+    <div class="error" style="color:red; font-size:small;">
+        {{ form_errors(formulaire.email) }}
+    </div>
+
+    {{ form_label(formulaire.password) }}
+    {{ form_widget(formulaire.password) }}
+    <div class="error" style="color:red; font-size:small;">
+        {{ form_errors(formulaire.password) }}
+    </div>
+
+
+{{ form_end(formulaire) }}
+{% endblock %}
